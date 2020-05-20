@@ -1,36 +1,51 @@
 <!-- accounts/templates/accounts/signup.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1> Sign Up! </h1>
+<h1 class='page_title'> Sign Up! </h1>
 
 <form method="POST" action="{%url 'signup'%}"> <!--이름 signup인 url에 접근!!-->
     {% csrf_token %}
-    사용자 이름:
+    사용자 이름
     <br>
     <input name="username" type="text" value="">
     <br>
     <br>
-    비밀번호:
+    비밀번호
     <br>
     <input name="password1" type="password" value="">
     <br>
     <br>
-    비밀번호 확인:
+    비밀번호 확인
     <br>
     <input name="password2" type="password" value="">
     <br>
     <br>
-    학교:
+    학교
     <br>
-    <input name="college" type="text" value="">
-    <br>
-    <br>
-    전공:
-    <br>
-    <input name="major" type="text" value="">
+    <input name="college" type="text" value="" placeholder="예시) 서울대학교">
     <br>
     <br>
-    <input type="submit" value="Sign Up!">
+    전공
+    <br>
+    <input name="major" type="text" value="" placeholder="예시) 기계항공공학부">
+    <br>
+    <br>
+    생일
+    <br>
+    <input name="birth" type="date" value="" min="1950-01-01" max="2020-05-01">
+    <br>
+    <br>
+    Instagram ID
+    <br>
+    <input name="instagram" type="text" value="" placeholder="예시) jackyoung96">
+    <br>
+    <br>
+    주소
+    <br>
+    <input name="address" type="text" value="">
+    <br>
+    <br>
+    <input class='submit_button' type="submit" value="Sign Up!">
     
 </form>
 {% endblock content %}

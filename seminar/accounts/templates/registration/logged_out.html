@@ -1,6 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <p>로그아웃되었습니다.</p>
-    <a href="{% url 'login' %}">다시 로그인하기</a>
-    <a href="{% url 'index' %}">Home</a>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1 class='page_title'>로그아웃되었습니다.</h1>
+    <div class='logout_option'>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'login' %}">다시 로그인하기</a>
+    <div>
+
+{% endblock content %}

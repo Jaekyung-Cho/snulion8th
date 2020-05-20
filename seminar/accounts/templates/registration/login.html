@@ -2,18 +2,18 @@
 
 {% block content%}
 
-<h1>로그인</h1>
+<h1 class='page_title'>로그인</h1>
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <p>
-	사용자 이름:
-        <input type="text" name="username" value="">
-  	</p>
+	사용자 이름
+    </p>
+    <input type="text" name="username" value="">
   	<p>
-        비밀번호:
+    비밀번호
+    </p>
 	<input type="password" name="password" value="">
-  	</p>
-    <input type="submit" value="로그인" />
+    <input class='submit_button' type="submit" value="로그인" />
 </form>
 
 {% endblock content %}

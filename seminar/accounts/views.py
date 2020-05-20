@@ -9,6 +9,9 @@ def signup(request):
 			user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
 			user.profile.college = request.POST['college']
 			user.profile.major = request.POST['major']
+			user.profile.birth = request.POST['birth']
+			user.profile.instagram = request.POST['instagram']
+			user.profile.address = request.POST['address']
 			user.save()
 			auth.login(request, user)
 			return redirect('/feeds/')
