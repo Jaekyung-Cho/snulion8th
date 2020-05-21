@@ -28,6 +28,8 @@ urlpatterns = [
     path('feeds/', include('feedpage.urls')),
     #path('accounts/', include('accounts.urls')), 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', accounts.views.signup, name='signup'),   # 항상 끝에도 쉼표를 붙여 줍시다
+    path('accounts/signup/', accounts.views.signup, name='signup'),
+    path('accounts/update_user/', accounts.views.update_user, name='update_user'),
+       # 항상 끝에도 쉼표를 붙여 줍시다
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

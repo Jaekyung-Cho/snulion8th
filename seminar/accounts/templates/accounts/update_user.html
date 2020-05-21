@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class='page_title'>너 님의 정보를 바꿔주세요</h1>
+
+<form action="{{request.path}}" method='POST'>
+    {% csrf_token %}
+    <input name='id' type='hidden' value="{{user.id}}">
+    사용자 이름
+    <br>
+    <p style="font-size: 17px;font-weight:bold;">{{user.get_username}}</p>
+    <br>
+    <br>
+    학교
+    <br>
+    <input name="college" type="text" value="{{user.profile.college}}" placeholder="예시) 서울대학교">
+    <br>
+    <br>
+    전공
+    <br>
+    <input name="major" type="text" value="{{user.profile.major}}" placeholder="예시) 기계항공공학부">
+    <br>
+    <br>
+    생일
+    <br>
+    <input name="birth" type="date" value="{{user.profile.birth|date:"Y-m-d"}}">
+    <br>
+    <br>
+    Instagram ID
+    <br>
+    <input name="instagram" type="text" value="{{user.profile.instagram}}" placeholder="예시) jackyoung96">
+    <br>
+    <br>
+    주소
+    <br>
+    <input name="address" type="text" value="{{user.profile.address}}">
+    <br>
+    <br>
+    <input class='submit_button' type="submit" value="고쳐버리기!">
+</form>
+{% endblock content %}
+
+<h1 class='page_title'>너 님의 정보를 바꿔주세요<h1>

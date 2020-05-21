@@ -17,3 +17,17 @@ def signup(request):
 			return redirect('/feeds/')
 	return render(request, 'accounts/signup.html')
 
+def update_user(request):
+	if request.method == 'GET':
+		user_id = request.GET.get('user')
+		user = User.objects.get(id=user_id)
+		return render(request, 'accounts/update_user.html', {'user':user})
+	elif request.method == 'POST':
+		user = User.objects.get(id=request.POST['id'])
+		user.profile.college = request.POST['college']
+		user.profile.major = request.POST['major']
+		user.profile.birth = request.POST['birth']
+		user.profile.instagram = request.POST['instagram']	
+		user.profile.address = request.POST['address']
+		user.save()
+		return redirect('/feeds/')
