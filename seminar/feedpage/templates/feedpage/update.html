@@ -2,7 +2,7 @@
 
 {% block content%}
 
-<h1 class='page_title'>edit feed</h1>
+<h1 class='page_title'>어디 한 번 고쳐 보시던지</h1>
   <form action="/feeds/{{feed.id}}/?next={{redirect_to}}" method="POST">
     {% csrf_token %}
     <p>title</p>

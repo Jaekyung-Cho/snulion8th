@@ -1,7 +1,7 @@
 <!-- accounts/templates/accounts/signup.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1 class='page_title'> Sign Up! </h1>
+<h1 class='page_title'> 사자가 되러 오셨군요? </h1>
 
 <form method="POST" action="{%url 'signup'%}"> <!--이름 signup인 url에 접근!!-->
     {% csrf_token %}
