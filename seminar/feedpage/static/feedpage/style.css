@@ -4,10 +4,11 @@
 
 body {
     margin: 0px;
+    background-color: #d8c6fa;
 }
 
 header {
-    height: 100px;
+    height: 120px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -50,7 +51,7 @@ header {
 
 .feedsBase {
     position: relative;
-    top: 100px;
+    top: 120px;
     display: flex;
     flex-direction: column;
 }
@@ -67,7 +68,7 @@ header {
 
 .each_feed {
     border: 1px solid gray;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     margin: 10px;
 }
 
@@ -148,4 +149,19 @@ form textarea {
 
 .submit_button {
     margin-bottom: 50px;
+}
+
+.feed_comment {
+    border: 1px solid gray;
+    box-shadow:3px 3px 3px 3px #DDD;
+}
+
+.feed_comment_each {
+    display: flex;
+    flex-direction: row;
+}
+
+.feed_comment_create {
+    display: flex;
+    flex-direction: row;
 }

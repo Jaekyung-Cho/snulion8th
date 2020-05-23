@@ -29,6 +29,7 @@ urlpatterns = [
     #path('accounts/', include('accounts.urls')), 
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
+    path('accounts/<int:pk>/follow/', accounts.views.follow_manager, name='follow'),
     path('accounts/update_user/', accounts.views.update_user, name='update_user'),
        # 항상 끝에도 쉼표를 붙여 줍시다
     

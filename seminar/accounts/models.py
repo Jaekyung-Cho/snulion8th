@@ -15,6 +15,7 @@ class Profile(models.Model):
     birth = models.DateField(auto_now=False, auto_now_add=False, default="2020-01-01")
     instagram = models.CharField(max_length=20, blank=True)
     address = models.TextField(blank=True)
+    follows = models.ManyToManyField('self',through='Follow', blank=True, related_name='followed', symmetrical=False)
     
 
 
@@ -30,3 +31,10 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):  
         instance.profile.save()
 # Create your models here.
+
+class Follow(models.Model):
+    follow_from = models.ForeignKey(Profile, related_name='follow_to', on_delete=models.CASCADE)
+    follow_to = models.ForeignKey(Profile, related_name='follow_from', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.follow_from, self.follow_to)

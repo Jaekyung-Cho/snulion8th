@@ -2,16 +2,56 @@
 
 {% block content %}
 <h1 class='page_title'>멋쟁이 4자를 위한 게시판</h1>
-    <a class='new_feed' href="{% url 'new'%}">새로 만들어버리기</a>
+    {% if user.is_authenticated %}
+      <a class='new_feed' href="{% url 'new'%}">새로 만들어버리기</a>
+    {% endif %}
     {% for feed in feeds %} 
       <div class='each_feed'>
         <div class='feed_option'>
+          <a href="/feeds/{{feed.id}}/like/">{{feed.like_users.count}}</a>
           <a class='feed_option_detail' href="/feeds/{{ feed.id }}/">더보시렵니까?</a>
-          <a href="/feeds/{{ feed.id }}/update/?next={{request.path}}">고쳐버리기</a>
-          <a href="/feeds/{{ feed.id }}/delete/" onclick="return confirm('정말 삭제하시겠습니까?')">없애버리기</a>
+          {% if request.user == feed.author %}  
+            <a href="/feeds/{{ feed.id }}/update/?next={{request.path}}">고쳐버리기</a>
+            <a href="/feeds/{{ feed.id }}/delete/" onclick="return confirm('정말 삭제하시겠습니까?')">없애버리기</a>
+          {%endif%}
         </div>
         <p>제목 : {{ feed.title }}</p>
         <p>내용 : {{ feed.content }}</p>
+        <p>작성자:<strong>{{feed.author.username}}</strong>
+        (following : {{feed.author.profile.follow_to.all.count}}, follower : {{feed.author.profile.follow_from.all.count}})
+        {% if user.is_authenticated %}
+          {% if request.user != feed.author %}
+            <a href="/accounts/{{ feed.author.id }}/follow">
+              {% if request.user.profile not in feed.author.profile.follows.all %}
+                  팔로우
+              {% else %}
+                  팔로우 취소
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endif %}
+        </p>
+        <div class="feed_comment">
+          <p>댓글</p>
+          {% for c in feed.feedcomment_set.all %}
+          <div class="feed_comment_each">
+            <p>{{c.content}}</p>
+            <form action="/feeds/{{feed.id}}/comments/{{c.id}}/" method="POST">
+              {% csrf_token %}
+              {% if request.user == c.author %}
+                <button>삭제</button>
+              {%endif%}
+            </form>
+          </div>
+          {%endfor%}
+          <div class="feed_comment_create">
+            <form action="/feeds/{{feed.id}}/comments/" method="POST">
+              {% csrf_token %}
+              <input type="text" name="content"/>
+              <button type="submit">댓글 달기</button>
+            </form>
+          </div>
+        </div>
       </div>
     {% endfor %}
 {% endblock content %}
