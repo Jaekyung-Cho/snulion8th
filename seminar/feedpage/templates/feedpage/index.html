@@ -8,17 +8,16 @@
     {% for feed in feeds %} 
       <div class='each_feed'>
         <div class='feed_option'>
-          <a href="/feeds/{{feed.id}}/like/">{{feed.like_users.count}}</a>
+          <a href="/feeds/{{feed.id}}/like/">따봉 수 : {{feed.like_users.count}}</a>
           <a class='feed_option_detail' href="/feeds/{{ feed.id }}/">더보시렵니까?</a>
           {% if request.user == feed.author %}  
             <a href="/feeds/{{ feed.id }}/update/?next={{request.path}}">고쳐버리기</a>
             <a href="/feeds/{{ feed.id }}/delete/" onclick="return confirm('정말 삭제하시겠습니까?')">없애버리기</a>
           {%endif%}
         </div>
-        <p>제목 : {{ feed.title }}</p>
-        <p>내용 : {{ feed.content }}</p>
-        <p>작성자:<strong>{{feed.author.username}}</strong>
-        (following : {{feed.author.profile.follow_to.all.count}}, follower : {{feed.author.profile.follow_from.all.count}})
+        <p class="feed_title">제목 : {{ feed.title }}</p>
+        <p class="feed_content">내용 : {{ feed.content }}</p>
+        <p class="feed_author">작성자:<strong>{{feed.author.username}}</strong>
         {% if user.is_authenticated %}
           {% if request.user != feed.author %}
             <a href="/accounts/{{ feed.author.id }}/follow">
@@ -36,6 +35,7 @@
           {% for c in feed.feedcomment_set.all %}
           <div class="feed_comment_each">
             <p>{{c.content}}</p>
+            <a class="feedcomment_like" href="/feeds/{{c.id}}/like_feedcomment/">따봉 수 : {{c.like_users.count}}</a>
             <form action="/feeds/{{feed.id}}/comments/{{c.id}}/" method="POST">
               {% csrf_token %}
               {% if request.user == c.author %}

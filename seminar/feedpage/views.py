@@ -61,4 +61,19 @@ def feed_like(request, pk):
     feed.like_set.get(user_id = request.user.id).delete()
   else:
     Like.objects.create(user_id = request.user.id, feed_id = feed.id)
+  
+  return redirect('/feeds/')
+
+def feedcomment_like(request, pk):
+  feedcomment = FeedComment.objects.get(id = pk)
+  like_list = feedcomment.like_set.filter(user_id = request.user.id)
+  if like_list.count() >0:
+    feedcomment.like_count -= 1
+    feedcomment.save()
+    feedcomment.like_set.get(user_id = request.user.id).delete()
+  else:
+    feedcomment.like_count += 1
+    feedcomment.save()
+    Like.objects.create(user_id = request.user.id, feedcomment_id = feedcomment.id)
+
   return redirect('/feeds/')

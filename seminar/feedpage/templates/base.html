@@ -15,7 +15,8 @@
               학교 : {{user.profile.college}}<br>
               전공 : {{user.profile.major}}<br>
               <div style="text-align: right">
-                내가 좋아한 글 : {{user.like_feeds.count}}
+                내가 좋아한 글 : {{user.like_feeds.count}}<br>
+                (팔로잉 : {{user.profile.follow_to.all.count}}, 팔로워 : {{user.profile.follow_from.all.count}})
               </div>
               <a href="{% url 'update_user'%}?user={{user.id}}">내 정보 수정하기</a>
               <a href="{% url 'logout'%}">로그아웃</a>

@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    height: 120px;
+    height: 140px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -34,7 +34,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: left;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     font-size: 32px;
     margin-block-start: 0px;
@@ -44,6 +44,7 @@ header {
     font-weight: bolder;
 }
 .home_button {
+    align-items: flex-start;
     margin-top: 10px;
     font-size: 15px;
     margin-right: 20px;
@@ -51,7 +52,7 @@ header {
 
 .feedsBase {
     position: relative;
-    top: 120px;
+    top: 140px;
     display: flex;
     flex-direction: column;
 }
@@ -72,7 +73,11 @@ header {
     margin: 10px;
 }
 
-.each_feed > p {
+.feed_author {
+    font-size: 15px;
+}
+
+.feed_title, .feed_content {
     margin: 4px;
     font-size: 25px;
 }
@@ -159,6 +164,12 @@ form textarea {
 .feed_comment_each {
     display: flex;
     flex-direction: row;
+}
+
+.feedcomment_like {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 30px;
 }
 
 .feed_comment_create {
