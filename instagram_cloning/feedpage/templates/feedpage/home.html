@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="feed_inner">
+  <div class="feed_head">
+    <a class="feed_head_name">
+      <p id="feed_name">jackyoung96</p>
+    </a>
+  </div>
+  <div class="feed_img">
+    <a>
+      <img class="img" src="images/article_img.jpg">
+    </a>
+  </div>
+  <div class="feed_heart">
+    <a class="feed_heart_a" href="https://www.instagram.com/tttang222/">
+      <img class="heart_icon" src="images/heart-regular.svg">
+    </a>
+  </div>
+  <div class="feed_text">
+    <input type="text" placeholder="댓글 달기..." class="feed_text_box">
+    <div class="feed_send_box">
+      <a class="feed_send_a">
+        <p id="feed_send">게시</p>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

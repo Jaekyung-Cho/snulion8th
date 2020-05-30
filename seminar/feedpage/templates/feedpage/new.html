@@ -2,13 +2,15 @@
 
 {% block content%}
 <h1 class='page_title'>새로운 글을 만들어 Boa요!!!</h1>
-    <form action="/feeds/" method="POST">
+    <form enctype="multipart/form-data" action="/feeds/" method="POST">
       {% csrf_token %}
       <p>title</p>
       <input name="title" /> <br />
       <p>content</p>
       <textarea name="content"> </textarea>
       <br />
+      <p>photo</p>
+      <input name="photo" type="file" /> <br />
       <input class='submit_button' type="submit" value="submit" />
     </form>
 {% endblock content %}

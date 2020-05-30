@@ -17,6 +17,9 @@
         </div>
         <p class="feed_title">제목 : {{ feed.title }}</p>
         <p class="feed_content">내용 : {{ feed.content }}</p>
+        {% if  feed.photo %}
+          <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
+        {% endif %}
         <p class="feed_author">작성자:<strong>{{feed.author.username}}</strong>
         {% if user.is_authenticated %}
           {% if request.user != feed.author %}

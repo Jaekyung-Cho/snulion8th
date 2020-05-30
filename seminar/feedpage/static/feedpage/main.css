@@ -1,0 +1,152 @@
+* {
+  font-family: 'Nanum Gothic', sans-serif; }
+
+body {
+  margin: 0px;
+  background-color: #d8c6fa; }
+
+header {
+  height: 140px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  text-align: left;
+  background-color: mediumaquamarine;
+  color: white;
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1); }
+
+.user_info {
+  margin: 8px;
+  width: 300px;
+  text-align: right;
+  color: white; }
+
+.home_title {
+  margin: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  font-size: 32px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-left: 10px;
+  height: auto;
+  font-weight: bolder; }
+
+.home_button {
+  align-items: flex-start;
+  margin-top: 10px;
+  font-size: 15px;
+  margin-right: 20px; }
+
+.feedsBase {
+  position: relative;
+  top: 140px;
+  display: flex;
+  flex-direction: column; }
+
+.page_title {
+  display: flex;
+  justify-content: center; }
+
+.new_feed {
+  margin-right: 20px;
+  text-align: right; }
+
+.each_feed {
+  border: 1px solid gray;
+  background-color: #ffffff;
+  margin: 10px; }
+
+.feed_author {
+  font-size: 15px; }
+
+.feed_title, .feed_content {
+  margin: 4px;
+  font-size: 25px; }
+
+.feed_option {
+  display: flex;
+  flex-direction: row; }
+
+.feed_option > a {
+  margin: 4px; }
+
+.feed_option_detail {
+  flex: 1 9999 0%; }
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; }
+
+form p {
+  margin: 2px; }
+
+form input, form textarea {
+  width: 300px;
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto; }
+
+form textarea {
+  height: 300px; }
+
+.show_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.show_content div {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px; }
+
+.show_content a {
+  margin: 10px; }
+
+.show_content p {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px dotted yellowgreen; }
+
+.logout_option {
+  display: flex;
+  justify-content: center; }
+
+.logout_option a {
+  font-size: 20px;
+  margin: 5px; }
+
+.submit_button {
+  margin-bottom: 50px; }
+
+.feed_comment {
+  border: 1px solid gray;
+  box-shadow: 3px 3px 3px 3px #DDD; }
+
+.feed_comment_each {
+  display: flex;
+  flex-direction: row; }
+
+.feedcomment_like {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 30px; }
+
+.feed_comment_create {
+  display: flex;
+  flex-direction: row; }
+
+/*# sourceMappingURL=main.css.map */

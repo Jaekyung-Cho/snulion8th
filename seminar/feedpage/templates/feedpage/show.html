@@ -7,6 +7,9 @@
       <a href="/feeds">home</a>
       <a href="/feeds/{{ feed.id }}/update/?next={{request.path}}">edit</a>
   </div>
-      <p>{{feed.content}}</p>
-  </div>
+    <p>{{feed.content}}</p>
+    {% if  feed.photo %}
+      <img  src="{{ feed.photo.url }}"  alt="" width="30%" height="20%">
+    {% endif %}
+</div>
 {% endblock content %}

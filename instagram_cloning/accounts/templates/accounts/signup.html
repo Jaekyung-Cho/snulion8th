@@ -1,7 +1,7 @@
 <!-- accounts/templates/accounts/signup.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1 class='page_title'> 사자가 되러 오셨군요? </h1>
+<h1 class='page_title'> Let's Make Instagram ID </h1>
 
 <form method="POST" action="{%url 'signup'%}"> <!--이름 signup인 url에 접근!!-->
     {% csrf_token %}
@@ -33,6 +33,11 @@
     생일
     <br>
     <input name="birth" type="date" value="2020-05-01" min="1950-01-01" max="2020-05-01">
+    <br>
+    <br>
+    Instagram ID
+    <br>
+    <input name="instagram" type="text" value="" placeholder="예시) jackyoung96">
     <br>
     <br>
     주소
