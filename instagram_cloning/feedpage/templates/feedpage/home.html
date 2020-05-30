@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% for feed in feeds %}
+{% load static %}
 <div class="feed_inner">
   <div class="feed_head">
     <a class="feed_head_name">
@@ -9,12 +10,12 @@
   </div>
   <div class="feed_img">
     <a>
-      <img class="img" src="images/article_img.jpg">
+      <img class="img" src="{{feed.photo.url}}">
     </a>
   </div>
   <div class="feed_heart">
     <a class="feed_heart_a" href="https://www.instagram.com/tttang222/">
-      <img class="heart_icon" src="images/heart-regular.svg">
+      <img class="heart_icon" src="{% static 'images/heart-regular.svg'%}">
     </a>
   </div>
   <div class="feed_text">

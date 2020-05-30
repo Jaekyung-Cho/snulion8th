@@ -45,6 +45,9 @@
       </div>
     </div>
     <div class = "feed">
+      {% if user.is_authenticated %}
+      <a href="{% url 'new' %}"><br>New Feed</a>
+      {%endif%}
       {% block content %}
       <div class="feed_inner">
         <div class="feed_head">

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h1 class='page_title'>New Feed</h1>
+    <form enctype="multipart/form-data" action="/home/" method="POST">
+      {% csrf_token %}
+      <p>content</p>
+      <textarea name="content"> </textarea>
+      <br />
+      <p>photo</p>
+      <input name="photo" type="file" /> <br />
+      <input class='submit_button' type="submit" value="submit" />
+    </form>
+{% endblock content %}
