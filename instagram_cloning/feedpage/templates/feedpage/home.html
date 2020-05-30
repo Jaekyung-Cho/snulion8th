@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+{% for feed in feeds %}
 <div class="feed_inner">
   <div class="feed_head">
     <a class="feed_head_name">
-      <p id="feed_name">jackyoung96</p>
+      <p id="feed_name">{{feed.author.username}}</p>
     </a>
   </div>
   <div class="feed_img">
@@ -25,4 +26,5 @@
     </div>
   </div>
 </div>
+{% endfor %}
 {% endblock content %}
