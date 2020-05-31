@@ -16,6 +16,19 @@ class Feed(models.Model):
         self.updated_at = timezone.now()
         self.save()
 
+class FeedComment(models.Model):
+    content = models.TextField()
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['created_at']
+
+    def update_date(self): # 나중에 수정할 때 사용
+        self.updated_at = timezone.now()
+        self.save()
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

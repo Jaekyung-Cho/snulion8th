@@ -1,31 +1,59 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for feed in feeds %}
 {% load static %}
+{% if user.is_authenticated %}
+  <a href="{% url 'new' %}"><br>New Feed</a>
+{%endif%}
+{% for feed in feeds %}
 <div class="feed_inner">
   <div class="feed_head">
     <a class="feed_head_name">
       <p id="feed_name">{{feed.author.username}}</p>
     </a>
+    {% if feed.author == request.user %}
+    <a class="feed_head_delete" href="/home/{{feed.id}}/delete/">
+      <p>delete</p>
+    </a>
+    {% endif %}
   </div>
   <div class="feed_img">
     <a>
       <img class="img" src="{{feed.photo.url}}">
     </a>
   </div>
+  <div class="feed_content">
+    <p>{{feed.content}}</p>
+  </div>
   <div class="feed_heart">
-    <a class="feed_heart_a" href="https://www.instagram.com/tttang222/">
+    {% if user.is_authenticated %}
+    <a class="feed_heart_a" href="/home/{{feed.id}}/like_feed/">
       <img class="heart_icon" src="{% static 'images/heart-regular.svg'%}">
     </a>
+    {% else %}
+    <a class="feed_heart_a" href="{% url 'login'%}">
+      <img class="heart_icon" src="{% static 'images/heart-regular.svg'%}">
+    </a>
+    {%endif%}
+    <p class="feed_heart_count">{{feed.like_users.count}}</p>
   </div>
-  <div class="feed_text">
-    <input type="text" placeholder="댓글 달기..." class="feed_text_box">
+  <form method="POST" action="/home/{{feed.id}}/new_comment" class="feed_text">
+    {% csrf_token %}
+    <input name="content" type="text" placeholder="댓글 달기..." class="feed_text_box">
     <div class="feed_send_box">
-      <a class="feed_send_a">
-        <p id="feed_send">게시</p>
-      </a>
+      <input class="feed_send_a" type="submit" id="feed_send" value="게시">
     </div>
-  </div>
+  </form>
+  <div class="feed_comment">
+    {% for c in feed.feedcomment_set.all %}
+    <div class="feed_comment_each">
+      <p>ㄴ</p>
+      <a class="user_name">
+        <p>{{c.author.username}} :</p>
+      </a>
+      <p>{{c.content}}</p>
+    </div>
+    {% endfor %}
+  <div>
 </div>
 {% endfor %}
 {% endblock content %}
