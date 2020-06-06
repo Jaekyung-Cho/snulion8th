@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
-  <a href="{% url 'new' %}"><br>New Feed</a>
+  <a href="{% url 'new' %}" style="color: red;"><br>New Feed</a>
 {%endif%}
 {% for feed in feeds %}
 <div class="feed_inner">
@@ -12,7 +12,7 @@
     </a>
     {% if feed.author == request.user %}
     <a class="feed_head_delete" href="/home/{{feed.id}}/delete/">
-      <p>delete</p>
+      <p style="color: rgb(150,0,0);">delete</p>
     </a>
     {% endif %}
   </div>

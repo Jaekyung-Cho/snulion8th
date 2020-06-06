@@ -37,9 +37,35 @@
           {% if user.is_authenticated %}
           <img src="{% static 'images/user-solid.svg' %}" onclick="logoutPopup();">
           {% else %}
-            <a href="{% url 'login' %}">
+            <a href="#login_popup">
               <img src="{% static 'images/user-solid.svg' %}">
             </a>
+            <div id="login_popup" class="login_overlay">
+              <div class="login_popup">
+                <div class="login_popup_head">
+                  <a href="#" style="margin-right: 5px;">X</a>
+                </div>
+                <div class="login_popup_body">
+                  <div class="login_popup_body_in">
+                    <h4>Already member?</h4>
+                    <a href={% url 'login' %}>
+                      <h2>Log In</h2>
+                    </a>
+                  </div>
+                  <div class="login_popup_body_in">
+                    <h4>No ID?</h4>
+                    <a href={% url 'signup' %}>
+                      <h2>Sign Up</h2>
+                    </a>
+                  </div>
+                </div>
+                <div class="login_popup_foot">
+                  <a href="#">
+                    cancle
+                  </a>
+                </div>
+              </div>
+            </div>
           {% endif %}
           </div>
         </div>
