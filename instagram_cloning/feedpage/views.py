@@ -35,3 +35,6 @@ def new_comment(request, id):
   content = request.POST['content']
   FeedComment.objects.create(feed_id = id, content = content, author = request.user)
   return redirect('/home/')
+
+def logout_popup(request):
+  return render(request, 'feedpage/logout_popup.html')

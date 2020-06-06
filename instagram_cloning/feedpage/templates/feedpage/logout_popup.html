@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>logout_popup</title>
+    <script language="javascript">
+      function moveClose() {
+        opener.location.href="/accounts/logout"; 
+        self.close();
+      }
+      function Close() {
+        self.close();
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Profile" onclick="">
+    <input type="button" value="Logout" onclick="moveClose();">
+    <input type="button" value="Cancle" onclick="Close();">
+  </body>
+</html>

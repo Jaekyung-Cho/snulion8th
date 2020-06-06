@@ -5,12 +5,12 @@ from django.utils import timezone
 
 # Create your models here.
 class Feed(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(blank = True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
     like_users = models.ManyToManyField(User, through="Like", related_name="like_feeds", blank=True)
-    photo = models.ImageField(blank = True, upload_to='feed_photos')
+    photo = models.ImageField(null = True, blank = True, upload_to='feed_photos')
 
     def update_date(self): # 나중에 수정할 때 사용
         self.updated_at = timezone.now()

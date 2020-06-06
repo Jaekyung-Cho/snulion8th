@@ -16,11 +16,13 @@
     </a>
     {% endif %}
   </div>
+  {% if feed.photo is not blank %}
   <div class="feed_img">
     <a>
       <img class="img" src="{{feed.photo.url}}">
     </a>
   </div>
+  {% endif %}
   <div class="feed_content">
     <p>{{feed.content}}</p>
   </div>
@@ -53,7 +55,7 @@
       <p>{{c.content}}</p>
     </div>
     {% endfor %}
-  <div>
+  </div>
 </div>
 {% endfor %}
 {% endblock content %}

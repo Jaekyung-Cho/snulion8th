@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% sass_src 'feedpage/main.scss' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet"/>
     <meta charset="utf-8">
+    <script language="javascript">
+      function logoutPopup(){window.open("/home/logout_popup","logout_popup","width=250, height=100, left=700, top=150");}
+    </script>
     <title>Liongram</title>
   </head>
   <body>
@@ -32,9 +35,7 @@
           </div>
           <div class = "icon">
           {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">
-              <img src="{% static 'images/user-solid.svg' %}">
-            </a>
+          <img src="{% static 'images/user-solid.svg' %}" onclick="logoutPopup();">
           {% else %}
             <a href="{% url 'login' %}">
               <img src="{% static 'images/user-solid.svg' %}">
