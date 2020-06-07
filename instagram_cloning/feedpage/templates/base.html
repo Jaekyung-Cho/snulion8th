@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% sass_src 'feedpage/main.scss' %}"/>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet"/>
     <meta charset="utf-8">
-    <script language="javascript">
+    <!--<script language="javascript">
       function logoutPopup(){window.open("/home/logout_popup","logout_popup","width=250, height=100, left=700, top=150");}
-    </script>
+    </script>-->
     <title>Liongram</title>
   </head>
   <body>
@@ -34,18 +34,51 @@
             </a>
           </div>
           <div class = "icon">
+
           {% if user.is_authenticated %}
-          <img src="{% static 'images/user-solid.svg' %}" onclick="logoutPopup();">
+          <a href="#logout_popup">
+            <img src="{% static 'images/user-solid.svg' %}">
+          </a>
+          <div id="logout_popup" class="logout_overlay">
+            <div class="logout_popup">
+              <div class="popup_head" style="display:flex; align-items:center;">
+                <a href="#" style="margin-right: 5px;">X</a>
+              </div>
+              <div class="popup_body">
+                <div class="logout_popup_body_in">
+                  <h4 style="font-weight: bold; font-size: 18px;">Profile</h4>
+                  <br>
+                  <p>{{user.username}}</p><br>
+                  <p>대학 : {{user.profile.college}}</p>
+                  <p>학과 : {{user.profile.major}}</p>
+                  <p>생일 : {{user.profile.birth}}</p>
+                  <p>주소 : {{user.profile.address}}</p>
+                  <p>follow : {{user.profile.follow_set.count}}</p>
+                  <br>
+                </div>
+              </div>
+              <div class="popup_foot">
+                <a href="{%url 'logout'%}">
+                  Logout
+                </a>
+                <a href="#">
+                  cancle
+                </a>
+              </div>
+            </div>
+          </div>
+
           {% else %}
+
             <a href="#login_popup">
               <img src="{% static 'images/user-solid.svg' %}">
             </a>
             <div id="login_popup" class="login_overlay">
               <div class="login_popup">
-                <div class="login_popup_head">
+                <div class="popup_head">
                   <a href="#" style="margin-right: 5px;">X</a>
                 </div>
-                <div class="login_popup_body">
+                <div class="popup_body">
                   <div class="login_popup_body_in">
                     <h4>Already member?</h4>
                     <a href={% url 'login' %}>
@@ -59,7 +92,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="login_popup_foot">
+                <div class="popup_foot">
                   <a href="#">
                     cancle
                   </a>
@@ -67,6 +100,7 @@
               </div>
             </div>
           {% endif %}
+
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    college = models.CharField(max_length=20, blank=True)  #
+    college = models.CharField(max_length=20, blank=True)  
     major = models.CharField(max_length=20, blank=True)
     birth = models.DateField(auto_now=False, auto_now_add=False, default="2020-01-01")
     address = models.TextField(blank=True)
