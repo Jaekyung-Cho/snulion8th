@@ -243,6 +243,25 @@
       top:3px;
       bottom:2px;
     }
+    p {
+      margin: 0;
+      width: max-content;
+    }
+    .comment_main {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      p { 
+        width: 100% !important;
+        overflow: scroll;
+      }
+      a{
+        margin: {
+          left: 10px;
+          right: 6px;
+        }
+      }
+    }
   }
   .user_name {
     margin: {
@@ -386,4 +405,7 @@
   .more-comment-btn {
     display: block;
     text-align: center;
+  }
+  .comment_delete {
+    text-align: right;
   }

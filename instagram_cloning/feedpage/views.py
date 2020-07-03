@@ -52,3 +52,14 @@ def new_comment(request, id):
 
 def logout_popup(request):
   return render(request, 'feedpage/logout_popup.html')
+
+def delete_comment(request, id, cid):
+  feed = Feed.objects.get(id=id)
+  c = FeedComment.objects.get(id=cid,feed_id=id)
+  c.delete()
+
+  context = {
+    'id' : id,
+    'cid' : cid
+  }
+  return JsonResponse(context)

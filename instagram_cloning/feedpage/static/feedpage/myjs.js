@@ -91,3 +91,37 @@ $('.feed_heart_ajax').click((e) => {
       },
   });
 });
+
+$('.comment_delete').click((e) => {
+  e.preventDefault();
+  console.log('form submitted');
+  const $this = $(e.currentTarget);
+  const fid = $this.data('fid');
+  const cid = $this.data('cid');
+  const csrfmiddlewaretoken = $this.data('csrfmiddlewaretoken');
+
+  $.ajax({
+      type: 'POST',
+      url: `/home/${fid}/${cid}/delete/`, 
+      data: { 
+          fid: fid,
+          cid: cid,
+          csrfmiddlewaretoken: csrfmiddlewaretoken,
+          content: $(`input#${fid}[name=content]`).val(),
+      },
+      dataType: 'json',
+      success: function(response) { 
+          console.log(response);
+          if($this.parent().parent().hasClass('last_comment')){
+            
+          }
+          $this.parent().parent().remove()
+      },
+      error: function(response, status, error) {
+          console.log(response, status, error);
+      },
+      complete: function(response) {
+          console.log(response);
+      },
+  });
+});

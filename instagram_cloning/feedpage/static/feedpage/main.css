@@ -219,6 +219,19 @@ form {
   padding-left: 20px;
   padding-top: 3px;
   padding-bottom: 2px; }
+  .feed_comment_each p {
+    margin: 0;
+    width: max-content; }
+  .feed_comment_each .comment_main {
+    display: flex;
+    flex-direction: row;
+    width: 100%; }
+    .feed_comment_each .comment_main p {
+      width: 100% !important;
+      overflow: scroll; }
+    .feed_comment_each .comment_main a {
+      margin-left: 10px;
+      margin-right: 6px; }
 
 .user_name {
   margin-right: 8px; }
@@ -348,5 +361,8 @@ form {
 .more-comment-btn {
   display: block;
   text-align: center; }
+
+.comment_delete {
+  text-align: right; }
 
 /*# sourceMappingURL=main.css.map */

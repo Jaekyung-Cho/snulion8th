@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/like_feed/', views.like_feed, name='like_feed'),
     path('<int:id>/new_comment/', views.new_comment, name='new_comment'),
     path('logout_popup/', views.logout_popup, name='logout_popup'),
+    path('<int:id>/<int:cid>/delete/', views.delete_comment, name='delete_comment'),
 ]

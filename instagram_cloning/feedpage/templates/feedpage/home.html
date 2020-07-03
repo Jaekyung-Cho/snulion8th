@@ -72,7 +72,10 @@
           <a class="user_name">
             <p>{{c.author.username}} :</p>
           </a>
-          <p>{{c.content}}</p>
+          <div class="comment_main">
+            <p>{{c.content}}</p>
+            <a href="/home/{{feed.id}}/{{c.id}}/{{delete}}/" class="comment_delete" data-fid="{{feed.id}}" data-cid="{{c.id}}" data-csrfmiddlewaretoken="{{csrf_token}}">delete</a>
+          </div>
         </div>
       {% else %}
         <div class="feed_comment_each toggle_comment" style="display: none;">
@@ -80,7 +83,10 @@
           <a class="user_name">
             <p>{{c.author.username}} :</p>
           </a>
-          <p>{{c.content}}</p>
+          <div class="comment_main">
+            <p>{{c.content}}</p>
+            <a href="/home/{{feed.id}}/{{c.id}}/{{delete}}/" class="comment_delete" data-fid="{{feed.id}}" data-cid="{{c.id}}" data-csrfmiddlewaretoken="{{csrf_token}}">delete</a>
+          </div>
         </div>
       {% endif %}
     {% endfor %}
