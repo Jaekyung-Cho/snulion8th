@@ -73,9 +73,9 @@
     margin-right: 20px;
   }
   
-  .feed {
+  .feed_main {
     background-color: #f6f5f5;
-    position: absolute;
+    position: relative;
     margin-top: 78px;
     height: auto;
     width: 100%;
@@ -377,8 +377,13 @@
     right:  40px;
     background-color: pink;
   }
-  .scroll-up {
+  .scroll-top {
     position: fixed;
     right: 40px !important;
     bottom: 100px !important;
+  }
+
+  .more-comment-btn {
+    display: block;
+    text-align: center;
   }

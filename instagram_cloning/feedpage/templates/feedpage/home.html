@@ -6,7 +6,7 @@
     <i class="material-icons">add</i>
   </a>
 {%endif%}
-  <button class="scroll-up mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <button class="scroll-top mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
     <i class="material-icons" style="font-size: 15px;">TOP</i>
   </button>
 {% for feed in feeds %}
@@ -41,33 +41,48 @@
     <p>{{feed.content}}</p>
   </div>
   <div class="feed_heart">
-    {% if user.is_authenticated %}
-    <a class="feed_heart_a" href="/home/{{feed.id}}/like_feed/">
+    {% if not user.is_authenticated %}
+    <a class="feed_heart_a" href="{% url 'login'%}">
       <img class="heart_icon" src="{% static 'images/heart-regular.svg'%}">
     </a>
     {% else %}
-    <a class="feed_heart_a" href="{% url 'login'%}">
+    <a class="feed_heart_a feed_heart_ajax" href="/home/{{feed.id}}/like_feed/" data-fid="{{feed.id}}" data-csrfmiddlewaretoken="{{csrf_token}}">
       <img class="heart_icon" src="{% static 'images/heart-regular.svg'%}">
     </a>
     {%endif%}
     <p class="feed_heart_count">{{feed.like_users.count}}</p>
   </div>
-  <form method="POST" action="/home/{{feed.id}}/new_comment" class="feed_text">
+  <form method="POST" action="/home/{{feed.id}}/new_comment" class="feed_text" data-fid="{{ feed.id }}" data-csrfmiddlewaretoken="{{ csrf_token }}">
     {% csrf_token %}
-    <input name="content" type="text" placeholder="댓글 달기..." class="feed_text_box">
+    <input id="{{feed.id}}" name="content" type="text" placeholder="댓글 달기..." class="feed_text_box">
     <div class="feed_send_box">
       <input class="feed_send_a" type="submit" id="feed_send" value="게시">
     </div>
   </form>
+  {%if feed.feedcomment_set.all.count > 1%}
+    <div class="more-comment-btn">
+      <button class="more-comment-button">MORE COMMENT</button>
+    </div> 
+  {%endif%}
   <div class="feed_comment">
     {% for c in feed.feedcomment_set.all %}
-    <div class="feed_comment_each">
-      <p>ㄴ</p>
-      <a class="user_name">
-        <p>{{c.author.username}} :</p>
-      </a>
-      <p>{{c.content}}</p>
-    </div>
+      {%if c.id == feed.feedcomment_set.all.last.id %}
+        <div class="feed_comment_each toggle_comment last_comment">
+          <p>ㄴ</p>
+          <a class="user_name">
+            <p>{{c.author.username}} :</p>
+          </a>
+          <p>{{c.content}}</p>
+        </div>
+      {% else %}
+        <div class="feed_comment_each toggle_comment" style="display: none;">
+          <p>ㄴ</p>
+          <a class="user_name">
+            <p>{{c.author.username}} :</p>
+          </a>
+          <p>{{c.content}}</p>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Feed, Like, FeedComment
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 #from django.contrib.auth.models import User 
 
 def home(request):
@@ -29,12 +30,25 @@ def like_feed(request, pk):
     feed.like_set.get(user_id = request.user.id).delete()
   else:
     Like.objects.create(user_id = request.user.id, feed_id = pk)
-  return redirect('/home/')
+  
+  context = {
+    'fid' : feed.id,
+    'like_count' : like_list.count() 
+  }
+  return JsonResponse(context)
 
 def new_comment(request, id):
   content = request.POST['content']
   FeedComment.objects.create(feed_id = id, content = content, author = request.user)
-  return redirect('/home/')
+  comment = FeedComment.objects.latest('id')
+
+  context = {
+    'id' : comment.id,
+    'username' : comment.author.username,
+    'content' : comment.content
+  }
+  
+  return JsonResponse(context)
 
 def logout_popup(request):
   return render(request, 'feedpage/logout_popup.html')
