@@ -333,4 +333,16 @@ form {
   justify-content: center;
   align-items: center; }
 
+.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+  z-index: 2;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  background-color: pink; }
+
+.scroll-up {
+  position: fixed;
+  right: 40px !important;
+  bottom: 100px !important; }
+
 /*# sourceMappingURL=main.css.map */
