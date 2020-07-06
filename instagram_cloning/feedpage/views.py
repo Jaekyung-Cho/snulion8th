@@ -10,7 +10,7 @@ def home(request):
     content = request.POST['content']
     photo =  request.FILES.get('photo', False) #유효성검사 통과f를 위한 False
     Feed.objects.create( content=content, author= request.user, photo=photo)
-    return redirect('/home/')
+    return JsonResponse({})
   elif request.method=='GET':
     feeds = Feed.objects.all()
     return render(request, 'feedpage/home.html',{'feeds':feeds})

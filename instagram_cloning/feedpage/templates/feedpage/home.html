@@ -2,9 +2,9 @@
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
-  <a href="{% url 'new' %}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <button type="button" data-toggle="modal" data-target="#createModal" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
     <i class="material-icons">add</i>
-  </a>
+  </button>
 {%endif%}
   <button class="scroll-top mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
     <i class="material-icons" style="font-size: 15px;">TOP</i>
@@ -16,14 +16,12 @@
       <p id="feed_name">{{feed.author.username}}</p>
     </a>
     {% if feed.author == request.user %}
-    <!-- Right aligned menu below button -->
     <a id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon feed_head_delete">
       <i class="material-icons">more_vert</i>
     </a>
-
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
         for="demo-menu-lower-right">
-      <li class="mdl-menu__item">Some Action</li>
+      <li class="mdl-menu__item"><a href="/home/{{feed.id}}/delete/">delete</a></li>
       <li class="mdl-menu__item">Another Action</li>
       <li disabled class="mdl-menu__item">Disabled Action</li>
       <li class="mdl-menu__item">Yet Another Action</li>
@@ -56,7 +54,7 @@
     {% csrf_token %}
     <input id="{{feed.id}}" name="content" type="text" placeholder="댓글 달기..." class="feed_text_box">
     <div class="feed_send_box">
-      <input class="feed_send_a" type="submit" id="feed_send" value="게시">
+      <input class="feed_send_a" type="submit" value="게시">
     </div>
   </form>
   {%if feed.feedcomment_set.all.count > 1%}
