@@ -74,7 +74,7 @@
           </a>
           <div class="comment_main">
             <p>{{c.content}}</p>
-            <a href="/home/{{feed.id}}/{{c.id}}/{{delete}}/" class="comment_delete" data-fid="{{feed.id}}" data-cid="{{c.id}}" data-csrfmiddlewaretoken="{{csrf_token}}">delete</a>
+            <a href="/home/{{feed.id}}/{{c.id}}/delete/" class="comment_delete" data-fid="{{feed.id}}" data-cid="{{c.id}}" data-csrfmiddlewaretoken="{{csrf_token}}">delete</a>
           </div>
         </div>
       {% else %}

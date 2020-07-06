@@ -36,22 +36,46 @@ $('.feed_text').submit((e) => {
           const str = `
             <div class="feed_comment_each toggle_comment last_comment">
               <p>ㄴ</p>
-                <a class="user_name">
-                  <p>${response.username} :</p>
-                </a>
-              <p>${response.content}</p>
+              <a class="user_name">
+                <p>${response.username} :</p>
+              </a>
+              <div class="comment_main">
+                <p>${response.content}</p>
+                <a href="/home/${fid}/${response.id}}/delete/" class="comment_delete" data-fid="${fid}" data-cid="${response.id}" data-csrfmiddlewaretoken="${csrfmiddlewaretoken}">delete</a>
+              </div>
             </div>
           `;
+          const toggle_str = `
+              <div class="more-comment-btn">
+                <button class="more-comment-button">MORE COMMENT</button>
+              </div> 
+          `
+
           const $commentBtn = $('.more-comment-button');
           const $lastComment = $('.last_comment');
 
-          if ($commentBtn.hasClass('showing-comment')) {
-              $lastComment.removeClass('last_comment');
-          } else {
-              $lastComment.removeClass('last_comment').hide();
+
+          if($commentBtn.length===1 && $lastComment.length===1){
+            if ($commentBtn.hasClass('showing-comment')) {
+                $lastComment.removeClass('last_comment');
+            } else {
+                $lastComment.removeClass('last_comment').hide();
+            }
+          }
+          else{
+            console.log(1)
+            if($('.feed_comment_each').length > 0){
+              console.log(2)
+              $(toggle_str).insertBefore($('.feed_comment'));
+            }
           }
 
-          $(str).insertAfter($lastComment);
+          if($lastComment.length===0){
+            $('.feed_comment').append(str)
+          }
+          else{
+            $(str).insertAfter($lastComment);
+          }
           $(`input#${fid}[name=content]`).val('');
       },
       error: function(response, status, error) {
@@ -113,7 +137,7 @@ $('.comment_delete').click((e) => {
       success: function(response) { 
           console.log(response);
           if($this.parent().parent().hasClass('last_comment')){
-            
+            $this.parent().parent().prev().addClass('last_comment')
           }
           $this.parent().parent().remove()
       },
