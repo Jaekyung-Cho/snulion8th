@@ -11,8 +11,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     college = models.CharField(max_length=20, blank=True)  
     major = models.CharField(max_length=20, blank=True)
-    birth = models.DateField(auto_now=False, auto_now_add=False, default="2020-01-01")
-    address = models.TextField(blank=True)
+    #birth = models.DateField(auto_now=False, auto_now_add=False, default="2020-01-01")
+    #address = models.TextField(blank=True)
     follows = models.ManyToManyField('self', through="Follow", blank=True, related_name='followed', symmetrical=False)
 
     @receiver(post_save, sender=User)

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -133,7 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'feedpage', 'static')
 
-LOGIN_REDIRECT_URL = "/home/"
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -143,3 +143,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 ACCOUNT_LOGOUT_ON_GET = True 
+
+
+LOGIN_REDIRECT_URL = "/home/"
+
