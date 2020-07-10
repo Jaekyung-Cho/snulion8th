@@ -28,5 +28,9 @@ paper searching sites/engines 시장은 google scholar가 꽉 잡고 있기 때�
 
 
 ### 1순위 페르소나
-screenshot
+불쌍한 김박사.......너의 선택은 헛되지 않았어......   
 ![screensh](./Persona.png)
+
+
+### UX 시나리오
+![screensh](./UX시나리오.png)
