@@ -20,12 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xt@f=2y2fa*d^&63jvm^$e*+4yu6a0**pctee80_v9kk#g6@g5'
+# 1. SECRET_KEY를 변경합니다. 첫번째 인자는 env 이름이고 두번째 인자는 기본값입니다.
+SECRET_KEY = os.environ.get('SECRET_KEY', "test_secret_key")
+# SECRET_KEY = 'xt@f=2y2fa*d^&63jvm^$e*+4yu6a0**pctee80_v9kk#g6@g5'
 
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# 3. DEBUG 모드는 프로덕션에서는 꺼야합니다. (환경변수는 모두 문자열이므로 'True', False'로 받습니다.)
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 
 # Application definition
@@ -85,12 +87,27 @@ WSGI_APPLICATION = 'seminar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+def get_db():
+    try:
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': os.environ['RDS_DB_NAME'],
+                'USER': os.environ['RDS_USERNAME'],
+                'PASSWORD': os.environ['RDS_PASSWORD'],
+                'HOST': os.environ['RDS_HOSTNAME'],
+                'PORT': os.environ['RDS_PORT'],
+            }
+        }
+    except:
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
+
+DATABASES = get_db()
 
 
 # Password validation
@@ -127,10 +144,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'seminar','static'),)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'seminar','static'),)
 
 
-LOGIN_REDIRECT_URL = "/feeds/"
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -146,3 +163,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 ACCOUNT_LOGOUT_ON_GET = True 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = "/feeds/"
+
+
